@@ -48,9 +48,37 @@ class Agent:
         directions = ["up", "down", "left", "right"]
         direction = directions[action_index]
         
+        # calculate distance between player and agent before making the move
+        distance_before = np.sqrt((P.loc_x - self.loc_x)**2 + (P.loc_y - self.loc_y)**2)
+        
         # Move in the predicted direction
         self.move(direction)
         
+        #calculate distance between player and agent after making the move
+        distance_after = np.sqrt((P.loc_x - self.loc_x)**2 + (P.loc_y - self.loc_y)**2)
+        
+        #calculate the distance for every possible move
+        #if the distance after the move is less than the distance before the move
+        #then the move was successful and we should train the model
+        
+
+        #simulate every possible move and calculate the distance after the move
+        
+        mov = ["up", "down", "left", "right"]
+        for m in mov:
+            self.move(m)
+            distance_after = np.sqrt((P.loc_x - self.loc_x)**2 + (P.loc_y - self.loc_y)**2)
+            if distance_after < distance_before:
+                best_move = m
+                
+
+            #save the best move
+            #train the model using the best move
+            
+            
+        
+        
+
         # train the model check if it actually moved towards the player or not 
         #and then train the model
         # Train the model using the data
@@ -61,7 +89,7 @@ class Agent:
         # use target data that would get us closer to the player
         
         
-        distance_from_player = np.linalg.norm(target_data) # Calculate the distance from the player
+        
         
         #check if the move of the neural network got us closer or further from the player
         
